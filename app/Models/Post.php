@@ -12,9 +12,21 @@ class Post extends Model
 
     protected $fillable = [
          "title", "picture", "content" ];
-
-    public function comments()
-    {
-        return $this->morphMany ('App\Models\Comments', "comment")->latest();
-    }
+         public static function boot(){
+            parent::boot();
+            self::creating(function ($post){
+                $post->user()->associate(auth()->user()->id);
+            });
+        }
+    
+    
+        public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
+    
+        public function comments()
+        {
+            return $this->hasMany(Comments::class);
+        }
 }

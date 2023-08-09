@@ -17,7 +17,7 @@
   
 		<div class="card">
 			<div class="card-body">
-			<div class="font-medium text-base text-gray-800 ml-12">{{ Auth::user()->name }}: {{ $comment->content}}
+			<div class="font-medium text-base text-gray-800 ml-12">{{ $comment->user->name }}: {{ $comment->content}}
 			</div>
 		</div>
             @empty
@@ -34,6 +34,7 @@
 			<button type="submit" class="text-black hover:text-black text-xl p-2 bg--100 border-black border hover:bg-yellow-500 rounded-xs ">Commenter</button>
     	</form>
 	</div> 
+	@auth
     <div class="flex justify-around mt-5">
         <a href="{{ route('posts.edit', $post) }}" class="text-black hover:text-black text-xl p-2 bg--100 border-black border hover:bg-blue-500 rounded-xs ">Modifier l'article</a>
         <form action="{{ url('posts/'. $post->id) }}" method="POST" style="display: inline">
@@ -45,4 +46,5 @@
 			<p><a href="{{ route('posts.index') }}" title="Retourner aux articles" class="text-black hover:text-black text-xl p-2 bg--100 border-black border hover:bg-green-500 rounded-xs" >Retourner aux posts</a></p>
 		</div>
 	</div>
+	@endauth
 @endsection

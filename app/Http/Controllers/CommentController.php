@@ -16,7 +16,7 @@ class CommentController extends Controller
     public function store(Post $post)
     {
         request()->validate([
-            'content' => 'required|min:5'
+            'content' => 'required|max:250'
         ]);
 
         $comment = new Comments();
@@ -26,7 +26,7 @@ class CommentController extends Controller
 
         $post->comments()->save($comment);
 
-        //return redirect()->route('posts.show',);
-        //return redirect(route("posts.show", $post));
+        // return redirect()->route('posts.show','');
+        return redirect(route("posts.show", $post));
     }
 }

@@ -19,7 +19,7 @@
 			<a href="{{ route('posts.show', $post) }}" title="Lire l'article" class="inline"><img class="rounded-xl w-64 h-50 m-2 mr-5" class="w-44" src="{{ asset('storage/'.$post->picture) }}"></a>
             
 			<a href="{{ route('posts.show', $post) }}" title="Lire l'article" class="inline font-bold text-center text-2xl mr-5 ">{{ $post->title }}</a>
-            	
+            @auth	
 			<a class="text-black hover:text-black text-xl p-2 bg-white-100 border-white border hover:bg-green-500 rounded-xs mr-5 text-center w-full" name="content" id="content" lang="fr" rows="10" cols="50" placeholder="Le contenu du post" href="{{ route('posts.edit', $post) }}" title="Modifier l'article" >Modifier</a>
             
 			<form method="POST" action="{{ route('posts.destroy', $post) }}" >
@@ -29,6 +29,7 @@
             
 			<input class="text-black hover:text-black text-xl p-2 bg-white-100 border-white border hover:bg-red-500 rounded-xs mr-5 w-full" name="content" id="content" lang="fr" rows="10" cols="50" placeholder="Le contenu du post" type="submit" value=" Supprimer" >
         </div>
+		@endauth
         @endforeach
     </div>
 	
